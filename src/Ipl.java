@@ -40,8 +40,8 @@ public class Ipl {
 
                 }
                 else {
-                    matchesWonPerTeam.put(match[1], new HashMap<String, Integer>());
-                    matchesWonPerTeam.get(match[1]).put(match[10], 1);
+                  //  matchesWonPerTeam.put(match[1], new HashMap<String, Integer>());
+                    matchesWonPerTeam.get(match[1]).put(match[10],1);
                 }
             }
             else {
