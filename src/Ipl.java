@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Ipl {
    public static HashMap<String, Integer>   matchCountMap = new HashMap<String, Integer>();
-    public static HashMap<String,HashMap<String,Integer>>   matchesWonPerTeam = new HashMap<String,HashMap<String,Integer>>();
+    public static Map<String,HashMap<String,Integer>>   matchesWonPerTeam = new HashMap<String,HashMap<String,Integer>>();
 
     public static void main(String[] args) throws IOException {
         String line="";
@@ -15,7 +15,7 @@ public class Ipl {
         while((line=bf.readLine())!=null) {
             if (skip == 0) {
                 skip++;
-                System.out.println(line);
+//                System.out.println(line);
                 continue;
             }
             String[] match = line.split(",");
@@ -25,32 +25,40 @@ public class Ipl {
                 matchCountMap.put(match[1], 1);
             }
 
+//            System.out.println(matchesWonPerTeam.containsKey(match[1]));
+//            System.out.println(line);
 
             if(matchesWonPerTeam.containsKey(match[1])){
-                if(matchesWonPerTeam.get(match[1]).containsKey()){
+//                System.out.println(matchesWonPerTeam.get(match[1]));
 
+                if(matchesWonPerTeam.get(match[1]).containsKey(match[10])){
+//                    System.out.println(matchesWonPerTeam.get(match[10]+"..."));
+//                matchesWonPerTeam.put(match[1], (matchesWonPerTeam.put(matchesWonPerTeam.get(match[10])));
+//                    matchesWonPerTeam.get(match[1]);
+//                    System.out.println( matchesWonPerTeam.get(match[1]).get(match[10])+1);
+                    matchesWonPerTeam.get(match[1]).put(match[10],matchesWonPerTeam.get(match[1]).get(match[10])+1);
 
                 }
-
-                else{
-                    matchesWonPerTeam.get
-
+                else {
+                    matchesWonPerTeam.put(match[1], new HashMap<String, Integer>());
+                    matchesWonPerTeam.get(match[1]).put(match[10], 1);
                 }
-
             }
             else {
                 matchesWonPerTeam.put(match[1],new HashMap<String,Integer>());
                 matchesWonPerTeam.get(match[1]).put(match[10],1);
+//                System.out.println(matchesWonPerTeam);
 
             }
         }
-        System.out.println(matchCountMap);
-        System.out.println("number of matches won per team per year");
+//        System.out.println(matchCountMap);
+//        System.out.println("number of matches won per team per year");
+        System.out.println(matchesWonPerTeam);
 
         }
 
 
-    }
+
 }
 
 
