@@ -159,7 +159,7 @@ public class Ipl {
     public static void topTenEconomicalBowler(List<Match> matches, List<Delivery> deliveries) {
         List<String> id = new ArrayList<String>();
         HashMap<String, Float> topEcomnomicalBowler = new HashMap<>();
-        ArrayList<Float>  EcoRate=new ArrayList<Float>();
+        ArrayList<Float> EcoRate = new ArrayList<Float>();
 
         HashMap<String, Integer> totalRuns = new HashMap<String, Integer>();
         HashMap<String, Integer> totalBalls = new HashMap<String, Integer>();
@@ -183,11 +183,20 @@ public class Ipl {
             topEcomnomicalBowler.put(key, totalRuns.get(key).floatValue() / (Float) totalBalls.get(key).floatValue() / 6);
             EcoRate.add(totalRuns.get(key).floatValue() / (Float) totalBalls.get(key).floatValue() / 6);
         }
-        sortByValue(topEcomnomicalBowler);
-        System.out.println(topEcomnomicalBowler);
-        
-    }
+        HashMap<String, Float> topTen = sortByValue(topEcomnomicalBowler);
+        System.out.println(topTen);
 
+        Set<Map.Entry<String,Float>> x=topTen.entrySet();
+        int i=0;
+        for(Map.Entry<String,Float> y:x){
+            if(i<10){
+                System.out.println(y.getKey()+" "+y.getValue());
+                i++;
+            }else{
+                break;
+            }
+        }
+    }
 
     public static void main(String[] args) throws IOException {
         List<Match> matchData = getMatchData();
