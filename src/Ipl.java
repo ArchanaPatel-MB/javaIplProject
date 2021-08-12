@@ -51,7 +51,7 @@ public class Ipl {
 //         System.out.println(line);
             String[] deliveryData = line.split(",");
 //            delivery.set(deliveryData[1]);
-            delivery.setExtraRuns(deliveryData[14]);
+            delivery.setExtraRuns(deliveryData[16]);
             delivery.setMatchId(deliveryData[0]);
             delivery.setBowlingTeam(deliveryData[3]);
             deliveries.add(delivery);
@@ -99,7 +99,7 @@ public class Ipl {
     }
 
    public static void extraRunConceded(List<Match> matches, List<Delivery> deliveries){
-       HashSet<String> id= new HashSet<String>();
+       List<String> id= new ArrayList<String>();
        HashMap<String, Integer> extraRunsByBowlingTeam = new  HashMap<String, Integer>();
 
       int i=0;
@@ -114,14 +114,14 @@ public class Ipl {
 //       System.out.println(id);
 //       System.out.println(years);
        for (Delivery delivery: deliveries) {
-            if(id.contains(delivery.getMatchId())){
+           if(id.contains(delivery.getMatchId())){
               if( extraRunsByBowlingTeam.containsKey(delivery.getBowlingTeam())){
-                  System.out.println(extraRunsByBowlingTeam.get(delivery.getBowlingTeam()) + Integer.parseInt(delivery.getExtraRuns()));
+//                  System.out.println(id);
+//                  System.out.println(extraRunsByBowlingTeam.get(delivery.getBowlingTeam()));
                   extraRunsByBowlingTeam.put(delivery.getBowlingTeam(),extraRunsByBowlingTeam.get(delivery.getBowlingTeam()) + Integer.parseInt(delivery.getExtraRuns()));
                 }
                 else{
                     extraRunsByBowlingTeam.put(delivery.getBowlingTeam(),Integer.parseInt(delivery.getExtraRuns()));
-
                 }
             }
         }
@@ -131,8 +131,8 @@ public class Ipl {
     public static void main(String[] args) throws IOException {
         List<Match>  matchData=getMatchData();
         List<Delivery> deliveryData=getDeliveryData();
-//        matchesPlayedPerYear(matchData);
-//        matchesWonPerTeamPerYear(matchData);
+        matchesPlayedPerYear(matchData);
+        matchesWonPerTeamPerYear(matchData);
         extraRunConceded(matchData,deliveryData);
     }
 }
