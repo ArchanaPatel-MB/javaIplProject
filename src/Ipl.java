@@ -9,7 +9,51 @@ import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.*;
 
+
 public class Ipl {
+  public  static int matchId=0;
+  public  static int inning=1;
+   public static int  battingTeam=2;
+  public  static int bowlingTeam=3;
+  public  static int over=4;
+   public static int ball=5;
+ public   static int batsman=6;
+ public static int non_striker=7;
+   public static int bowler=8;
+ public static int is_super_over=9;
+  public  static int wide_runs=10;
+  public static int bye_runs=11;
+  public  static int legbye_runs=12;
+  public  static int noball_runs=13;
+  public  static int penalty_runs=14;
+    public static int batsman_runs=15;
+  public  static int extra_runs=16;
+   public static int total_runs=17;
+   public static int player_dismissed=18;
+   public static int dismissal_kind=19;
+    public static int fielder=20;
+
+
+public static int id=0;
+    public  static int season=1;
+   public static int city=2;
+   public static int date=3;
+   public static int team1=4;
+   public static int team2=5;
+    public static int tossWinner=6;
+   public static int tossDecision=7;
+  public  static int result=8;
+   public static int dlApplied=9;
+   public static int winner=10;
+   public static int winByRuns=11;
+   public static int winByWicket=12;
+  public  static int playerOfMatch=13;
+   public static int venue=14;
+  public  static int umpire1=15;
+  public  static int umpire2=16;
+  public  static int umpire3=17;
+
+
 
     public static List<Match> getMatchData() throws IOException {
         List<Match> matches = new ArrayList<>();
@@ -26,9 +70,9 @@ public class Ipl {
             }
 //         System.out.println(line);
             String[] matchData = line.split(",");
-            match.setSeason(matchData[1]);
-            match.setWinner(matchData[10]);
-            match.setMatchId(matchData[0]);
+            match.setSeason(matchData[season]);
+            match.setWinner(matchData[winner]);
+            match.setMatchId(matchData[matchId]);
             matches.add(match);
         }
 //        System.out.println(matches.size());
@@ -54,12 +98,12 @@ public class Ipl {
 //         System.out.println(line);
             String[] deliveryData = line.split(",");
 //            delivery.set(deliveryData[1]);
-            delivery.setExtraRuns(deliveryData[16]);
-            delivery.setMatchId(deliveryData[0]);
-            delivery.setBowlingTeam(deliveryData[3]);
-            delivery.setBowler(deliveryData[8]);
-            delivery.setBall(deliveryData[5]);
-            delivery.setTotalRuns((deliveryData[17]));
+            delivery.setExtraRuns(deliveryData[extra_runs]);
+            delivery.setMatchId(deliveryData[matchId]);
+            delivery.setBowlingTeam(deliveryData[bowlingTeam]);
+            delivery.setBowler(deliveryData[bowler]);
+            delivery.setBall(deliveryData[ball]);
+            delivery.setTotalRuns((deliveryData[total_runs]));
             deliveries.add(delivery);
         }
 //        System.out.println(deliveries.size());
@@ -184,7 +228,7 @@ public class Ipl {
             EcoRate.add(totalRuns.get(key).floatValue() / (Float) totalBalls.get(key).floatValue() / 6);
         }
         HashMap<String, Float> topTen = sortByValue(topEcomnomicalBowler);
-        System.out.println(topTen);
+//        System.out.println(topTen);
 
         Set<Map.Entry<String,Float>> x=topTen.entrySet();
         int i=0;
@@ -201,9 +245,9 @@ public class Ipl {
     public static void main(String[] args) throws IOException {
         List<Match> matchData = getMatchData();
         List<Delivery> deliveryData = getDeliveryData();
-//        matchesPlayedPerYear(matchData);
-//        matchesWonPerTeamPerYear(matchData);
-//        extraRunConceded(matchData,deliveryData);
+        matchesPlayedPerYear(matchData);
+        matchesWonPerTeamPerYear(matchData);
+        extraRunConceded(matchData,deliveryData);
         topTenEconomicalBowler(matchData, deliveryData);
     }
 }
