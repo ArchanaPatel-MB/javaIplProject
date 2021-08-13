@@ -53,14 +53,15 @@ public static int id=0;
   public  static int umpire2=16;
   public  static int umpire3=17;
 
-
+static String pathDeliveries="deliveries.csv";
+static String matchesCsv="matches.csv";
 
     public static List<Match> getMatchData() throws IOException {
         List<Match> matches = new ArrayList<>();
         String line = "";
 
         int skip = 0;
-        BufferedReader bf = new BufferedReader(new FileReader("matches.csv"));
+        BufferedReader bf = new BufferedReader(new FileReader(matchesCsv));
         while ((line = bf.readLine()) != null) {
             Match match = new Match();
             if (skip == 0) {
@@ -87,7 +88,7 @@ public static int id=0;
         String line = "";
 
         int skip = 0;
-        BufferedReader bf = new BufferedReader(new FileReader("deliveries.csv"));
+        BufferedReader bf = new BufferedReader(new FileReader(pathDeliveries));
         while ((line = bf.readLine()) != null) {
             Delivery delivery = new Delivery();
             if (skip == 0) {
