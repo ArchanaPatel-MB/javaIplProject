@@ -128,7 +128,7 @@ static String matchesCsv="matches.csv";
         return matchCountMap;
     }
 
-    public static void matchesWonPerTeamPerYear(List<Match> matches) {
+    public static  Map<String, HashMap<String, Integer>> matchesWonPerTeamPerYear(List<Match> matches) {
         Map<String, HashMap<String, Integer>> matchesWonPerTeam = new HashMap<String, HashMap<String, Integer>>();
         System.out.println("matches won per team per year");
 
@@ -146,10 +146,10 @@ static String matchesCsv="matches.csv";
                 matchesWonPerTeam.get(matchData.getSeason()).put(matchData.getWinner(), 1);
             }
         }
-        System.out.println(matchesWonPerTeam);
+        return matchesWonPerTeam;
     }
 
-    public static void extraRunConceded(List<Match> matches, List<Delivery> deliveries) {
+    public static HashMap<String, Integer> extraRunConceded(List<Match> matches, List<Delivery> deliveries) {
         List<String> id = new ArrayList<String>();
         HashMap<String, Integer> extraRunsByBowlingTeam = new HashMap<>();
         for (Match matchData : matches) {
@@ -172,7 +172,7 @@ static String matchesCsv="matches.csv";
                 }
             }
         }
-        System.out.println(extraRunsByBowlingTeam);
+        return extraRunsByBowlingTeam;
 
     }
     public static HashMap<String, Float> sortByValue(HashMap<String, Float> hm)
@@ -201,7 +201,7 @@ static String matchesCsv="matches.csv";
 
 
 
-    public static void topTenEconomicalBowler(List<Match> matches, List<Delivery> deliveries) {
+    public static   Map<String,Float>  topTenEconomicalBowler(List<Match> matches, List<Delivery> deliveries) {
         List<String> id = new ArrayList<String>();
         HashMap<String, Float> topEcomnomicalBowler = new HashMap<>();
         ArrayList<Float> EcoRate = new ArrayList<Float>();
@@ -231,25 +231,28 @@ static String matchesCsv="matches.csv";
         HashMap<String, Float> topTen = sortByValue(topEcomnomicalBowler);
 //        System.out.println(topTen);
 
+        Map<String,Float> finalBowlers=new HashMap<>();
         Set<Map.Entry<String,Float>> x=topTen.entrySet();
         int i=0;
         for(Map.Entry<String,Float> y:x){
             if(i<10){
-                System.out.println(y.getKey()+" "+y.getValue());
+//                System.out.println(y.getKey()+" "+y.getValue());
+                finalBowlers.put(y.getKey(),y.getValue());
                 i++;
             }else{
                 break;
             }
         }
+        return finalBowlers;
     }
 
     public static void main(String[] args) throws IOException {
         List<Match> matchData = getMatchData();
         List<Delivery> deliveryData = getDeliveryData();
-        matchesPlayedPerYear(matchData);
-        matchesWonPerTeamPerYear(matchData);
-        extraRunConceded(matchData,deliveryData);
-        topTenEconomicalBowler(matchData, deliveryData);
+        System.out.println(matchesPlayedPerYear(matchData));
+        System.out.println(matchesWonPerTeamPerYear(matchData));
+        System.out.println(extraRunConceded(matchData,deliveryData));
+        System.out.println(topTenEconomicalBowler(matchData, deliveryData));
     }
 }
 

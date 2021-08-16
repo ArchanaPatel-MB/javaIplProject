@@ -1,16 +1,18 @@
+import com.ipl.model.Delivery;
 import com.ipl.model.Match;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class IplTest {
 
     @Test
-   public void matchesPlayedPerYear() throws IOException {
+   public void testMatchesPlayedPerYear() throws IOException {
         List<Match> matches=Ipl.getMatchData();
 
         HashMap<String, Integer>  expected = new HashMap<String, Integer>();
@@ -27,4 +29,35 @@ public class IplTest {
 
         assertEquals(Ipl.matchesPlayedPerYear(matches), expected);
     }
+
+     @Test
+    public void testMatchesWonPerTeamPerYear() throws IOException {
+         List<Match> matches=Ipl.getMatchData();
+         Map<String, HashMap<String, Integer>> expected=Ipl.matchesWonPerTeamPerYear(matches);
+    assertEquals(Ipl.matchesWonPerTeamPerYear(matches),expected);
+     }
+
+     @Test
+    public void extraRunConceded() throws IOException {
+        List<Delivery> deliveryData=Ipl.getDeliveryData();
+         List<Match> matches=Ipl.getMatchData();
+         HashMap<String, Integer> expected=Ipl.extraRunConceded(matches,deliveryData);
+
+         assertEquals(Ipl.extraRunConceded(matches,deliveryData), expected);
+     }
+
+     @Test
+     public void topTenEconomicalBowler() throws IOException {
+         List<Delivery> deliveryData=Ipl.getDeliveryData();
+         List<Match> matches=Ipl.getMatchData();
+         Map<String,Float> expected=Ipl.topTenEconomicalBowler(matches,deliveryData);
+         assertEquals(Ipl.topTenEconomicalBowler(matches,deliveryData),expected);
+
+     }
+    @Test
+    public void test(){
+
+       
+    }
+
 }
