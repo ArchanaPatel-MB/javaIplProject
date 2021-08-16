@@ -114,7 +114,7 @@ static String matchesCsv="matches.csv";
         return deliveries;
     }
 
-    public static void matchesPlayedPerYear(List<Match> matches) {
+    public static  HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) {
         HashMap<String, Integer> matchCountMap = new HashMap<String, Integer>();
         System.out.println("matches played per year");
 
@@ -125,7 +125,7 @@ static String matchesCsv="matches.csv";
                 matchCountMap.put(matchData.getSeason(), 1);
             }
         }
-        System.out.println(matchCountMap);
+        return matchCountMap;
     }
 
     public static void matchesWonPerTeamPerYear(List<Match> matches) {
