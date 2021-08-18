@@ -169,4 +169,22 @@ public class IplTest {
         assertNotNull(ipl.topTenEconomicalBowler(matches,delivery));
     }
 
+    @Test
+    public void testForMatchesSize() throws IOException {
+        Ipl ipl = new Ipl();
+        List<Match> matches = ipl.getMatchData();
+        assertEquals(matches.size(),636);
+
+
+    }
+    @Test
+    public void testForDeliveriesSize() throws IOException {
+        Ipl ipl = new Ipl();
+        List<Delivery> delivery = ipl.getDeliveryData();
+        assertEquals(delivery.size(),150460);
+
+    }
+
+
+
 }

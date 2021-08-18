@@ -102,7 +102,7 @@ public class Ipl {
     }
 
     public  HashMap<String, Integer> matchesPlayedPerYear(List<Match> matches) {
-        if(matches==null)
+        if(matches.equals(null))
         {
 //            throw new NullPointerException();
             return null;
