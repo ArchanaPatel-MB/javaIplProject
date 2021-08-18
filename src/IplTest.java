@@ -111,6 +111,20 @@ public class IplTest {
             System.out.println(ipl.extraRunConceded(matchesHelper,deliveryHelper));
             assertEquals(expected,ipl.extraRunConceded(matchesHelper,deliveryHelper));
         }
+
+    @Test
+    public void testFOrExtraRunConcededReturningNullValue() throws IOException {
+        Ipl ipl = new Ipl();
+        List<Match> helper=new ArrayList<>();
+        List<Delivery> delivery = ipl.getDeliveryData();
+        List<Match> matches = ipl.getMatchData();
+        for(int i=0;i<10;i++){
+            helper.add(matches.get(i));
+        }
+        assertNotNull(ipl.extraRunConceded(matches,delivery));
+    }
+
+
     @Test
     public void testTopTenEconomicalBowler() throws IOException {
         Ipl ipl = new Ipl();
@@ -141,6 +155,18 @@ public class IplTest {
 
         System.out.println(ipl.topTenEconomicalBowler(matchesHelper,deliveryHelper));
 
+    }
+
+    @Test
+    public void testFOrTopTenEcoBowlersReturningNullValue() throws IOException {
+        Ipl ipl = new Ipl();
+        List<Match> helper=new ArrayList<>();
+        List<Delivery> delivery = ipl.getDeliveryData();
+        List<Match> matches = ipl.getMatchData();
+        for(int i=0;i<10;i++){
+            helper.add(matches.get(i));
+        }
+        assertNotNull(ipl.topTenEconomicalBowler(matches,delivery));
     }
 
 }
