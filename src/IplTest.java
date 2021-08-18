@@ -110,11 +110,7 @@ public class IplTest {
             expected.put("Kolkata Knight Riders",12);
             System.out.println(ipl.extraRunConceded(matchesHelper,deliveryHelper));
             assertEquals(expected,ipl.extraRunConceded(matchesHelper,deliveryHelper));
-
         }
-
-
-
     @Test
     public void testTopTenEconomicalBowler() throws IOException {
         Ipl ipl = new Ipl();
@@ -129,7 +125,21 @@ public class IplTest {
         for(int i=122714;i<126700;i++){
             deliveryHelper.add(delivery.get(i));
         }
-        System.out.println(ipl.topTenEconomicalBowler(matches,delivery));
+        Map<String, Float> expected=new HashMap<>();
+        expected.put("KA Pollard",(float)(0.18229167));
+        expected.put("GJ Maxwell",(float)0.17592593);
+        expected.put("PP Chawla",(float)0.17479675);
+        expected.put("DJG Sammy",(float)0.18085106);
+        expected.put("DJ Muthuswami",(float)0.17179488);
+        expected.put("JD Unadkat",(float)0.1851852);
+        expected.put("Iqbal Abdulla",(float)0.18253969);
+        expected.put("DJ Hooda",(float)0.17278288);
+        expected.put("RG More",(float)0.17741936);
+        expected.put("UT Yadav",(float)0.17391305);
+
+        assertEquals(expected,ipl.topTenEconomicalBowler(matchesHelper,deliveryHelper));
+
+        System.out.println(ipl.topTenEconomicalBowler(matchesHelper,deliveryHelper));
 
     }
 

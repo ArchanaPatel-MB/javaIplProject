@@ -169,7 +169,7 @@ public class Ipl {
         Collections.sort(list, new Comparator<Map.Entry<String, Float>>() {
             public int compare(Map.Entry<String, Float> o1,
                                Map.Entry<String, Float> o2) {
-                return (o1.getValue()).compareTo(o2.getValue());
+                return (o2.getValue()).compareTo(o1.getValue());
             }
         });
 
@@ -209,32 +209,34 @@ public class Ipl {
             topEcomnomicalBowler.put(key, totalRuns.get(key).floatValue() / (Float) totalBalls.get(key).floatValue() / 6);
             EcoRate.add(totalRuns.get(key).floatValue() / (Float) totalBalls.get(key).floatValue() / 6);
         }
-        System.out.println(topEcomnomicalBowler );
-
-        List<Map.Entry<String, Float>> topTen = new ArrayList<>(topEcomnomicalBowler.entrySet());
-
-        Collections.sort(topTen, new Comparator<Map.Entry<String, Float>>() {
-            public int compare(Map.Entry<String, Float> c1,Map.Entry<String, Float> c2)
-            {
-                return c1.getValue().compareTo(c2.getValue());
-            }
-        });
-
-
-//        HashMap<String, Float> topTen = sortByValue(topEcomnomicalBowler);
-        System.out.println(">>>>>>>>>>>>"+topTen);
-//        Map<String, Float> finalBowlers = new HashMap<>();
-//        Set<Map.Entry<String, Float>> x = topTen.entrySet();
-//        int i = 0;
-//        for (Map.Entry<String, Float> y : x) {
-//            if (i < 10) {
-//                finalBowlers.put(y.getKey(), y.getValue());
-//                i++;
-//            } else {
-//                break;
+//        System.out.println(topEcomnomicalBowler );
+//
+//        List<Map.Entry<String, Float>> topTen = new ArrayList<>(topEcomnomicalBowler.entrySet());
+//        System.out.println(topTen);
+//        Collections.sort(topTen, new Comparator<Map.Entry<String, Float>>() {
+//            public int compare(Map.Entry<String, Float> c2,Map.Entry<String, Float> c1)
+//            {
+//
+//                return c1.getValue().compareTo(c2.getValue());
 //            }
-//        }
-        return topEcomnomicalBowler;
+//        });
+
+
+
+        HashMap<String, Float> topTen = sortByValue(topEcomnomicalBowler);
+//        System.out.println(topTen);
+        Map<String, Float> finalBowlers = new HashMap<>();
+        Set<Map.Entry<String, Float>> x = topTen.entrySet();
+        int i = 0;
+        for (Map.Entry<String, Float> y : x) {
+            if (i < 10) {
+                finalBowlers.put(y.getKey(), y.getValue());
+                i++;
+            } else {
+                break;
+            }
+        }
+        return finalBowlers;
     }
 
     public static void main(String[] args) throws IOException {
